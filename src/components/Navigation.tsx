@@ -1,12 +1,11 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
 const Navigation: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
+  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -25,43 +24,43 @@ const Navigation: React.FC = () => {
         <div className="flex items-center justify-between h-20">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="flex items-center space-x-2">
-                <div className="text-2xl font-bold text-[#FF3D22]">ULTIRO</div>
+              <Link to="/" className="flex items-center space-x-2">
+                <img src="/ultirov1.png" alt="Ultiro" className="h-8 w-auto" />
               </Link>
             </div>
             <div className="hidden md:ml-4 lg:ml-6 md:flex md:items-center md:space-x-2 lg:space-x-3">
               <Link
-                href="/about"
+                to="/about"
                 className="text-gray-300 hover:text-white px-2 py-2 text-xs lg:text-sm font-medium border-b-2 border-transparent hover:border-[#FF3D22] transition-colors duration-200"
               >
                 About
               </Link>
               <Link
-                href="/scale"
+                to="/scale"
                 className="text-gray-300 hover:text-white px-2 py-2 text-xs lg:text-sm font-medium border-b-2 border-transparent hover:border-[#FF3D22] transition-colors duration-200"
               >
                 Scale
               </Link>
               <Link
-                href="/programs"
+                to="/programs"
                 className="text-gray-300 hover:text-white px-2 py-2 text-xs lg:text-sm font-medium border-b-2 border-transparent hover:border-[#FF3D22] transition-colors duration-200"
               >
                 Programs
               </Link>
               <Link
-                href="/portfolio"
+                to="/portfolio"
                 className="text-gray-300 hover:text-white px-2 py-2 text-xs lg:text-sm font-medium border-b-2 border-transparent hover:border-[#FF3D22] transition-colors duration-200"
               >
                 Portfolio
               </Link>
               <Link
-                href="/insights"
+                to="/insights"
                 className="text-gray-300 hover:text-white px-2 py-2 text-xs lg:text-sm font-medium border-b-2 border-transparent hover:border-[#FF3D22] transition-colors duration-200"
               >
                 Insights
               </Link>
               <Link
-                href="/careers"
+                to="/careers"
                 className="text-gray-300 hover:text-white px-2 py-2 text-xs lg:text-sm font-medium border-b-2 border-transparent hover:border-[#FF3D22] transition-colors duration-200"
               >
                 Careers
@@ -72,20 +71,20 @@ const Navigation: React.FC = () => {
           {/* Desktop CTA buttons */}
           <div className="hidden md:flex md:items-center md:space-x-3 lg:space-x-4">
             <Link
-              href="/apply-founder"
+              to="/apply-founder"
               className="whitespace-nowrap inline-flex items-center px-3 py-2 lg:px-4 lg:py-2 border border-[#FF3D22] text-xs lg:text-sm font-medium rounded-full text-white bg-[#FF3D22] hover:bg-transparent hover:text-[#FF3D22] transition-colors duration-200"
             >
               Apply as Founder
             </Link>
             <Link
-              href="/apply-partner"
+              to="/apply-partner"
               className="whitespace-nowrap inline-flex items-center px-3 py-2 lg:px-4 lg:py-2 border border-white text-xs lg:text-sm font-medium rounded-full text-white hover:bg-white hover:text-black transition-colors duration-200"
             >
               Apply as Partner
             </Link>
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button - Only shows hamburger icon, not X */}
           <div className="flex items-center md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -100,9 +99,10 @@ const Navigation: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
+      {/* Mobile menu - Full Screen */}
       {isOpen && (
-        <div className="fixed inset-0 bg-black z-40 md:hidden flex flex-col overflow-y-auto">
+        <div className="fixed inset-0 bg-black z-40 md:hidden flex flex-col overflow-y-auto animate-fadeIn">
+          {/* Close button at the top right */}
           <button
             onClick={() => setIsOpen(false)}
             className="absolute top-6 right-6 p-2 text-white hover:text-[#FF3D22] transition-colors"
@@ -111,48 +111,49 @@ const Navigation: React.FC = () => {
             <X className="h-8 w-8" />
           </button>
 
+          {/* Logo in mobile menu */}
           <div className="px-4 pt-20 pb-6">
-            <Link href="/" className="inline-block mb-8" onClick={() => setIsOpen(false)}>
-              <div className="text-3xl font-bold text-[#FF3D22]">ULTIRO</div>
+            <Link to="/" className="inline-block mb-8" onClick={() => setIsOpen(false)}>
+              <img src="/ultirov1.png" alt="Ultiro" className="h-10 w-auto" />
             </Link>
             <div className="space-y-4">
               <Link
-                href="/about"
+                to="/about"
                 className="text-gray-300 hover:text-white block px-3 py-4 text-xl font-medium border-b border-gray-800"
                 onClick={() => setIsOpen(false)}
               >
                 About
               </Link>
               <Link
-                href="/scale"
+                to="/scale"
                 className="text-gray-300 hover:text-white block px-3 py-4 text-xl font-medium border-b border-gray-800"
                 onClick={() => setIsOpen(false)}
               >
                 Scale
               </Link>
               <Link
-                href="/programs"
+                to="/programs"
                 className="text-gray-300 hover:text-white block px-3 py-4 text-xl font-medium border-b border-gray-800"
                 onClick={() => setIsOpen(false)}
               >
                 Programs
               </Link>
               <Link
-                href="/portfolio"
+                to="/portfolio"
                 className="text-gray-300 hover:text-white block px-3 py-4 text-xl font-medium border-b border-gray-800"
                 onClick={() => setIsOpen(false)}
               >
                 Portfolio
               </Link>
               <Link
-                href="/insights"
+                to="/insights"
                 className="text-gray-300 hover:text-white block px-3 py-4 text-xl font-medium border-b border-gray-800"
                 onClick={() => setIsOpen(false)}
               >
                 Insights
               </Link>
               <Link
-                href="/careers"
+                to="/careers"
                 className="text-gray-300 hover:text-white block px-3 py-4 text-xl font-medium border-b border-gray-800"
                 onClick={() => setIsOpen(false)}
               >
@@ -164,14 +165,14 @@ const Navigation: React.FC = () => {
           <div className="px-4 py-8 border-t border-gray-800">
             <div className="flex flex-col gap-5">
               <Link
-                href="/apply-founder"
+                to="/apply-founder"
                 className="block w-full text-center py-4 px-6 border-2 border-[#FF3D22] text-lg font-medium rounded-full text-white bg-[#FF3D22] hover:bg-transparent hover:text-[#FF3D22] transition-all duration-300"
                 onClick={() => setIsOpen(false)}
               >
                 Apply as Founder
               </Link>
               <Link
-                href="/apply-partner"
+                to="/apply-partner"
                 className="block w-full text-center py-4 px-6 border-2 border-white text-lg font-medium rounded-full text-white hover:bg-white hover:text-black transition-all duration-300"
                 onClick={() => setIsOpen(false)}
               >
